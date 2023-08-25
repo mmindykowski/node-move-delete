@@ -17,14 +17,23 @@ function createDir(path) {
 
 createDir(path.join(__dirname, "data-temp"));
 
-fs.rename(
-  path.join(__dirname, "data", "students-first-year.txt"),
-  path.join(__dirname, "data-temp", "temp-students-first-year.txt"),
-  function (err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Zmieniono lub przeniesiono");
-    }
+fs.readdir(path.join(__dirname, "data"), function (err, files) {
+  if (err) {
+    console.log(err);
+    return;
   }
-);
+
+  files.forEach(function (file) {
+    fs.rename(
+      path.join(__dirname, "data", file),
+      path.join(__dirname, "data-temp", "temp" + file),
+      function (err) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log("Zmieniono lub przeniesiono");
+        }
+      }
+    );
+  });
+});
