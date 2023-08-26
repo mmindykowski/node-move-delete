@@ -26,7 +26,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
   files.forEach(function (file) {
     fs.rename(
       path.join(__dirname, "data", file),
-      path.join(__dirname, "data-temp", "temp" + file),
+      path.join(__dirname, "data-temp", "temp-" + file),
       function (err) {
         if (err) {
           console.log(err);
