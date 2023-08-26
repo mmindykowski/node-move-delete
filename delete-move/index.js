@@ -44,3 +44,11 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
     }
   });
 });
+
+fs.rm(path.join(__dirname, "log.txt"), function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("Usunięto fodler");
+  }
+});
