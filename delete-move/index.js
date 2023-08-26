@@ -24,7 +24,7 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
   }
 
   files.forEach(function (file) {
-    fs.rename(
+    fs.renameSync(
       path.join(__dirname, "data", file),
       path.join(__dirname, "data-temp", "temp-" + file),
       function (err) {
@@ -35,5 +35,12 @@ fs.readdir(path.join(__dirname, "data"), function (err, files) {
         }
       }
     );
+  });
+  fs.rmdir(path.join(__dirname, "data"), function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Usunięto folder");
+    }
   });
 });
